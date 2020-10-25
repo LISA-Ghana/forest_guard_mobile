@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:forest_guard/ui/pages/profile_page.dart';
 
 class FloatingHomeOptions extends StatelessWidget {
   @override
@@ -32,7 +34,12 @@ class FloatingHomeOptions extends StatelessWidget {
               color: Colors.white,
               iconSize: 36,
               icon: Icon(Icons.account_circle),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (_) => ProfilePage(),
+                  fullscreenDialog: true,
+                ));
+              },
             ),
             IconButton(
               color: Colors.white,
