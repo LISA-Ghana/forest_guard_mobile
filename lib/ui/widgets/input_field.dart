@@ -9,7 +9,8 @@ class InputField extends StatelessWidget {
   final FocusNode focusNode;
   final EdgeInsetsGeometry margin;
   final VoidCallback onEditingComplete;
-  bool enabled;
+  final bool enabled;
+  final void Function(String value) validator;
 
   InputField({
     this.hintText,
@@ -21,6 +22,7 @@ class InputField extends StatelessWidget {
     this.onEditingComplete,
     this.textCapitalization = TextCapitalization.words,
     this.margin = const EdgeInsets.symmetric(horizontal: 25),
+    this.validator,
   });
 
   @override
@@ -34,12 +36,14 @@ class InputField extends StatelessWidget {
         borderRadius: BorderRadius.circular(50),
       ),
       child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         enabled: enabled,
         controller: controller,
         keyboardType: keyboardType,
         textInputAction: textInputAction,
         onEditingComplete: onEditingComplete,
         focusNode: focusNode,
+        validator: validator,
         decoration: InputDecoration(
           hintText: hintText,
           border: InputBorder.none,

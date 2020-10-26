@@ -26,6 +26,8 @@ class AuthService {
     return null;
   }
 
+  User get currentUser => _auth.currentUser;
+
   Future<User> login(String agentID, String forestID) async {
     try {
       final doc = await _getAgentDoc(agentID);
