@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:forest_guard/services/notification_service.dart';
 import 'package:forest_guard/ui/widgets/floating_home_options.dart';
 import 'package:forest_guard/ui/widgets/response_button.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
+  @override
+  _HomepageState createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    super.initState();
+
+    NotificationService.instance.configureFCM(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
