@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io' show Platform;
 
 class FirestoreService {
   FirestoreService._internal();
@@ -7,7 +8,17 @@ class FirestoreService {
 
   static FirestoreService get instance => _instance;
 
-  final _firestore = FirebaseFirestore.instance;
+  static final _firestore = FirebaseFirestore.instance;
+
+  void initLocal() {
+    final _host = Platform.isAndroid ? '10.0.2.2:8080' : 'localhost:8080';
+
+    _firestore.settings = Settings(
+      host: _host,
+      sslEnabled: false,
+      persistenceEnabled: false,
+    );
+  }
 
   Future<QuerySnapshot> getCollection(String path, [GetOptions options]) async {
     return await _firestore.collection(path).get(options);
