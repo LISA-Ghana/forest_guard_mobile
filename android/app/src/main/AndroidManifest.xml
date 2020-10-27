@@ -3,6 +3,9 @@
    <application
         android:label="forest_guard"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBT7xkrOptcx9yeNBXyj8Xiqg_brflBtkI"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

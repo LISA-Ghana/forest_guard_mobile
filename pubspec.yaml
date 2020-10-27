@@ -16,6 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   firebase_auth: ^0.18.1+2
   firebase_messaging: ^7.0.3
+  google_maps_flutter: ^1.0.3
 
 dev_dependencies:
   flutter_test:
