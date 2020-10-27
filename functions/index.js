@@ -10,9 +10,24 @@ exports.sendNotification = functions.firestore.document("activities/{doc_id}").o
         return console.log("Document " + context.params.doc_id + ": was deleted");
     }
 
+    let title = "";
+
+    if (document.type === "1") {
+        // Illegal Activity
+        title = "Illegal Activity Detected";
+        console.log(title);
+    } else if (document.type === "2") {
+        // Human Activity
+        title = "Human Activity Detected";
+        console.log(title)
+    } else {
+        // No activity
+        return console.log("No activity detected. Skipping notification");
+    }
+
     const payload = {
         notification: {
-            title: "New Activity Detected",
+            title: title,
             body: "A suspected activity has been detected at Forest #1",
             icon: "default",
             sound: "default",
@@ -21,7 +36,7 @@ exports.sendNotification = functions.firestore.document("activities/{doc_id}").o
             android_channel_id: "Detected Activities"
         },
         data: {
-            title: "New Activity Detected",
+            title: title,
             body: "A suspected activity has been detected at Forest #1",
             icon: "default",
             sound: "default",
