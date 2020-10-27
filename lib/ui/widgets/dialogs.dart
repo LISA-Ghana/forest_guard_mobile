@@ -81,16 +81,22 @@ class _AppDialog extends StatelessWidget {
       ),
       actions: [
         CupertinoDialogAction(
-          child: Text(isActivity ? 'Get Directions' : 'Close'),
-          isDestructiveAction: !isActivity,
-          onPressed: () {
-            if (isActivity) {
-              provider.drawPolylines();
-            }
-
-            Navigator.pop(context);
-          },
+          child: Text('Close'),
+          isDestructiveAction: true,
+          onPressed: () => Navigator.pop(context),
         ),
+        if (isActivity)
+          CupertinoDialogAction(
+            child: Text('Respond'),
+            isDestructiveAction: !isActivity,
+            onPressed: () {
+              if (isActivity) {
+                provider.drawPolylines();
+              }
+
+              Navigator.pop(context);
+            },
+          ),
       ],
     );
   }
