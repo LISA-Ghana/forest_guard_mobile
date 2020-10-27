@@ -1,5 +1,6 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart' show BuildContext;
+import 'package:forest_guard/services/location_service.dart';
 import 'package:forest_guard/ui/widgets/dialogs.dart';
 
 class NotificationService {
@@ -16,7 +17,8 @@ class NotificationService {
     print('Subscribed to topic: activities');
   }
 
-  Future<void> configureFCM(BuildContext context) async {
+  Future<void> configureFCM(
+      BuildContext context, PolylineProvider provider) async {
     await subscribeToTopic();
 
     _fcm.configure(
@@ -24,6 +26,8 @@ class NotificationService {
         AppDialogs.showDialog(
           context,
           isLoading: false,
+          isActivity: true,
+          provider: provider,
           title: message['notification']['title'] ?? message['data']['title'],
           message: message['notification']['body'] ?? message['data']['body'],
         );
@@ -33,6 +37,8 @@ class NotificationService {
         AppDialogs.showDialog(
           context,
           isLoading: false,
+          isActivity: true,
+          provider: provider,
           title: message['notification']['title'] ?? message['data']['title'],
           message: message['notification']['body'] ?? message['data']['body'],
         );
@@ -42,6 +48,8 @@ class NotificationService {
         AppDialogs.showDialog(
           context,
           isLoading: false,
+          isActivity: true,
+          provider: provider,
           title: message['notification']['title'] ?? message['data']['title'],
           message: message['notification']['body'] ?? message['data']['body'],
         );
