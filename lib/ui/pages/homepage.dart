@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:forest_guard/services/location_service.dart';
 import 'package:forest_guard/services/notification_service.dart';
 import 'package:forest_guard/ui/widgets/floating_home_options.dart';
 import 'package:forest_guard/ui/widgets/map_widget.dart';
 import 'package:forest_guard/ui/widgets/response_button.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -14,7 +16,10 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
 
-    NotificationService.instance.configureFCM(context);
+    NotificationService.instance.configureFCM(
+      context,
+      Provider.of<PolylineProvider>(context, listen: false),
+    );
   }
 
   @override
@@ -31,8 +36,8 @@ class _HomepageState extends State<Homepage> {
           ),
           Positioned(
             bottom: 16,
-            left: 50,
-            right: 50,
+            left: 100,
+            right: 100,
             child: ResponseButton(),
           ),
         ],

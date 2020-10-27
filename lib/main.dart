@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:forest_guard/services/auth_service.dart';
+import 'package:forest_guard/services/location_service.dart';
 import 'package:forest_guard/ui/pages/homepage.dart';
 import 'package:forest_guard/ui/pages/login.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +29,10 @@ class MyApp extends StatelessWidget {
           if (user == null) {
             return LoginPage();
           } else {
-            return Homepage();
+            return ChangeNotifierProvider(
+              create: (_) => PolylineProvider(),
+              child: Homepage(),
+            );
           }
         },
       ),
