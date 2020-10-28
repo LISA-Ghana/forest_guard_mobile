@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:forest_guard/services/auth_service.dart';
+import 'package:forest_guard/services/location_service.dart';
 import 'package:forest_guard/ui/pages/homepage.dart';
 import 'package:forest_guard/ui/widgets/dialogs.dart';
 import 'package:forest_guard/ui/widgets/input_field.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -37,7 +39,12 @@ class _LoginPageState extends State<LoginPage> {
 
       if (user != null) {
         Navigator.of(context).pushAndRemoveUntil(
-          CupertinoPageRoute(builder: (_) => Homepage()),
+          CupertinoPageRoute(
+            builder: (_) => ChangeNotifierProvider(
+              create: (_) => PolylineProvider(),
+              child: Homepage(),
+            ),
+          ),
           (route) => false,
         );
       } else {
@@ -70,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green,
+      resizeToAvoidBottomPadding: false,
       body: Center(
         child: Form(
           key: _formKey,

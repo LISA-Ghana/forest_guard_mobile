@@ -23,6 +23,8 @@ class _MapWidgetState extends State<MapWidget> {
           markers: provider.markers,
           polylines: provider.polyLines,
           myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          compassEnabled: false,
           zoomControlsEnabled: true,
           onMapCreated: (controller) {
             provider.initController(controller);
