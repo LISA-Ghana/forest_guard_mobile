@@ -11,15 +11,16 @@ exports.sendNotification = functions.firestore.document("activities/{doc_id}").o
     }
 
     let title = "";
+    let body = "";
 
     if (document.type === "1") {
         // Illegal Activity
         title = "Illegal Activity Detected";
-        console.log(title);
+        body = "A suspected illegal activity has been detected at Forest #1";
     } else if (document.type === "2") {
         // Human Activity
         title = "Human Activity Detected";
-        console.log(title)
+        body = "A suspected human activity has been detected at Forest #1";
     } else {
         // No activity
         return console.log("No activity detected. Skipping notification");
@@ -28,7 +29,7 @@ exports.sendNotification = functions.firestore.document("activities/{doc_id}").o
     const payload = {
         notification: {
             title: title,
-            body: "A suspected activity has been detected at Forest #1",
+            body: body,
             icon: "default",
             sound: "default",
             click_action: "FLUTTER_NOTIFICATION_CLICK",
