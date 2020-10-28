@@ -46,6 +46,7 @@ class PolylineProvider extends ChangeNotifier {
   final markers = <Marker>{};
   final polyLines = <Polyline>{};
   GoogleMapController _controller;
+  bool isLoading = false;
 
   void initController(GoogleMapController controller) {
     _controller = controller;
@@ -63,6 +64,8 @@ class PolylineProvider extends ChangeNotifier {
       ),
     );
 
+    isLoading = false;
+
     notifyListeners();
   }
 
@@ -75,6 +78,12 @@ class PolylineProvider extends ChangeNotifier {
   }
 
   Future<void> drawPolylines() async {
+    // Remove current polylines and show loading dialog.
+    polyLines.clear();
+    markers.clear();
+    isLoading = true;
+    notifyListeners();
+
     final bias = 0.1;
 
     final service = LocationService.instance;
@@ -120,9 +129,7 @@ class PolylineProvider extends ChangeNotifier {
                 snippet: 'Location of the detected activity'),
             position:
                 LatLng(position.latitude + bias, position.longitude + bias),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueGreen,
-            ),
+            icon: BitmapDescriptor.defaultMarker,
           ),
         ]);
 
