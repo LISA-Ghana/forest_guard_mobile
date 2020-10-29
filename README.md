@@ -60,3 +60,14 @@ service cloud.firestore {
   }
 }
 ``` 
+
+## Team Members
+
+| Name | Role | Profile |  
+| :--- | :--- | :--- |  
+| Appau Ernest (Lead) | AI Model Development/Deployment | [Github](https://github.com/kappernie) / [LinkedIn](https://www.linkedin.com/in/appauernestkofimensah/) |  
+| Debrah Kwesi Buabeng | Mobile Developer | [Github](https://github.com/Akora-IngDKB) / [LinkedIn](https://www.linkedin.com/in/kwesi-buabeng-debrah) |  
+| Akpalu Larry | Data Collection and Annotation | [Github](https://github.com/larry2310) / [LinkedIn](https://www.linkedin.com/in/larry-akpalu-5b3a1a119/) |  
+| Kpene Godsway Edem | Documentation | [Github](https://github.com/kpegods96) / [LinkedIn](https://www.linkedin.com/in/godsway-edem-kpene-a6542711a/) |  
+| Baidoo Mabel | Data Collection and Annotation | [Github](https://github.com/GeekiAdubea) / [LinkedIn](https://www.linkedin.com/in/mabel-adubea-baidoo/) |  
+| Appau Roberta | UI/UX Designer |  |  
