@@ -4,14 +4,22 @@ The mobile app client for the [Forest Guard AI Model](https://github.com/LISA-Gh
 
 > ### The purpose of the app is to receive notifications triggered by the cloud functions upon data sent to Firestore by the Raspberry Pi running the AI Model.
 
+## How It Works
+The Keras model deployed on the Raspberry Pi detects audio and make predictions. It sends the data (`{type: "1"}`) for a Firestore collection (`activities`). The cloud function is then triggered with either sends notification to the mobile devices or does nothing based on the `type`.
+```
+"1" => Illegal Activity (Chainsaw, etc)
+"2" => Human Activities
+"<any other number>" => Irrelevant activity (birds chipping, wind, etc)
+```
+
 ## Requirements
 * [Flutter](https://flutter.dev) for building the application.
 * [Google Maps API Key](https://cloud.google.com/maps-platform/) to the Map.
 * [Tomtom API Key](https://developer.tomtom.com/routing-api) for Map routes.
-* [Firebase Project](https://firebase.google.com) for the database and cloud functions.
-* [Firebase CLI](https://firebase.google.com/docs/functions/get-started) for the cloud functions (which trigger notifications).
+* [Firebase Project](https://firebase.google.com) for the database and hosting cloud functions.
+* [Firebase CLI](https://firebase.google.com/docs/functions/get-started) for setting up, testing and deploying the cloud functions (which trigger notifications).
 
-## Set Up (Flutter)
+## Set Up (Firebase for Flutter)
 1. Follow [this](https://firebase.flutter.dev/docs/overview) to set up Firebase for Flutter. Remember to add your `google-services.json` (for android) and `GoogleService-Info.plist` for (iOS).
 2. Replace `android:value` of this meta tag within the `<application>` tag inside the `android/app/src/main/AndroidManifest.xml` with your Google Maps API Key.
 ```xml
@@ -34,7 +42,7 @@ If you get an NPM permission or access denied error, run `cd functions && sudo n
     "forest_id": "1"
 }
 ```
-> ### Note: You should allow read in your firebase rules for non-authenticated calls to this `agents` collection. The document existence is checked before performing the anonymous login. You can change this before in the `lib/auth_service.dart`.
+> #### Note: You should allow read in your firebase rules for non-authenticated calls to this `agents` collection. The document existence is checked before performing the anonymous login. You can change this before in the `lib/auth_service.dart`.
 
 #### Sample Firestore Rules
 ```
