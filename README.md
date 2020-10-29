@@ -1,7 +1,54 @@
 # Forest Guard
 
-The mobile app client for the Forest Guard AI Model built and deployed by Team LISA for the [AI4Good Hackathon](https://superfluid.io/ai-commons/) organized by [AI Commons](https://ai-commons.org/) and hosted by [Superfluid.io](https://superfluid.io/).
+The mobile app client for the [Forest Guard AI Model](https://github.com/LISA-Ghana/forest_guard_ai) built and deployed by Team LISA for the [AI4Good Hackathon](https://superfluid.io/ai-commons/) organized by [AI Commons](https://ai-commons.org/) and hosted by [Superfluid.io](https://superfluid.io/).
 
 > ### The purpose of the app is to receive notifications triggered by the cloud functions upon data sent to Firestore by the Raspberry Pi running the AI Model.
 
-<!-- TODO: Add link to AI Model Repo -->
+## Requirements
+* [Flutter](https://flutter.dev) for building the application.
+* [Google Maps API Key](https://cloud.google.com/maps-platform/) to the Map.
+* [Tomtom API Key](https://developer.tomtom.com/routing-api) for Map routes.
+* [Firebase Project](https://firebase.google.com) for the database and cloud functions.
+* [Firebase CLI](https://firebase.google.com/docs/functions/get-started) for the cloud functions (which trigger notifications).
+
+## Set Up (Flutter)
+1. Follow [this](https://firebase.flutter.dev/docs/overview) to set up Firebase for Flutter. Remember to add your `google-services.json` (for android) and `GoogleService-Info.plist` for (iOS).
+2. Replace `android:value` of this meta tag within the `<application>` tag inside the `android/app/src/main/AndroidManifest.xml` with your Google Maps API Key.
+```xml
+<meta-data android:name="com.google.android.geo.API_KEY" 
+          android:value="your_long_random_maps_api_key"/>
+```
+
+## Set Up (Cloud Functions)
+1. Run `firebase login` to connect your google account with the Firebase CLI. (Be sure to use the same account used for the Firebase Project as they will be sharing the same database)
+2. After installing the Firebase CLI, run `firebase init functions` from the project root. Follow the instructions to complete the initialization. (Note: the function script was written in **JavaScript** not TypeScript).
+If you get an NPM permission or access denied error, run `cd functions && sudo npm install`.
+3. Run `firebase deploy --only functions` to deploy the script to Firebase. Upon smooth sailing, you will see a success message like **✔  Deploy complete!** in the console.
+
+## Set Up (Firebase Firestore)
+1. After setting up a firebase project, set up Cloud Firestore.
+2. Set up a collection `agents` and add a document with:
+```json
+{
+    "agent_id": "1234",
+    "forest_id": "1"
+}
+```
+> ### Note: You should allow read in your firebase rules for non-authenticated calls to this `agents` collection. The document existence is checked before performing the anonymous login. You can change this before in the `lib/auth_service.dart`.
+
+#### Sample Firestore Rules
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /agents/{id} {
+    	allow read;
+        allow write: if false;
+    }
+  }
+}
+``` 
