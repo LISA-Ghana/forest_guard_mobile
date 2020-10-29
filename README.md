@@ -1,7 +1,7 @@
 # Forest Guard
 [![Forest Guard Client](https://img.shields.io/endpoint?color=green&style=flat-square&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dorg.lisa_ghana.forest_guard%26l%3DForest%2520Guard%2520Client%26m%3D%24version)](https://play.google.com/store/apps/details?id=org.lisa_ghana.forest_guard)  
 
-The mobile app client for the [Forest Guard AI Model](https://github.com/LISA-Ghana/forest_guard_ai) built and deployed by Team LISA for the [AI4Good Hackathon](https://superfluid.io/ai-commons/) organized by [AI Commons](https://ai-commons.org/) and hosted by [Superfluid.io](https://superfluid.io/).
+The mobile app client for the [Forest Guard AI Model](https://github.com/LISA-Ghana/forest_guard_ai) built and deployed by Team LISA for the [AI4Good Hackathon](https://superfluid.io/ai-commons/) organized by [AI Commons](https://ai-commons.org/) and moderated by [Superfluid.io](https://superfluid.io/).
 
 > ### The purpose of the app is to receive notifications triggered by the cloud functions upon data sent to Firestore by the Raspberry Pi running the AI Model.
 
@@ -66,7 +66,7 @@ service cloud.firestore {
 
 | Name | Role | Profile |  
 | :--- | :--- | :--- |  
-| Appau Ernest (Lead) | AI Model Development/Deployment | [Github](https://github.com/kappernie) / [LinkedIn](https://www.linkedin.com/in/appauernestkofimensah/) |  
+| Appau Ernest (Lead) | AI Model Development/Deployment/I-IoT | [Github](https://github.com/kappernie) / [LinkedIn](https://www.linkedin.com/in/appauernestkofimensah/) |  
 | Debrah Kwesi Buabeng | Mobile Developer | [Github](https://github.com/Akora-IngDKB) / [LinkedIn](https://www.linkedin.com/in/kwesi-buabeng-debrah) |  
 | Akpalu Larry | Data Collection and Annotation | [Github](https://github.com/larry2310) / [LinkedIn](https://www.linkedin.com/in/larry-akpalu-5b3a1a119/) |  
 | Kpene Godsway Edem | Documentation | [Github](https://github.com/kpegods96) / [LinkedIn](https://www.linkedin.com/in/godsway-edem-kpene-a6542711a/) |  
