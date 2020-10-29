@@ -77,14 +77,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green,
-      resizeToAvoidBottomPadding: false,
       body: Center(
         child: Form(
           key: _formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 250),
+              Spacer(),
               Text(
                 'Forest Guard',
                 style: TextStyle(
