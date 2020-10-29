@@ -17,43 +17,29 @@ class NotificationService {
     print('Subscribed to topic: activities');
   }
 
+  void _showDialog(BuildContext context, Map<String, dynamic> message,
+      PolylineProvider provider) {
+    AppDialogs.showDialog(
+      context,
+      isLoading: false,
+      isActivity: true,
+      provider: provider,
+      title: message['notification']['title'] ?? message['data']['title'],
+      message: message['notification']['body'] ?? message['data']['body'],
+    );
+  }
+
   Future<void> configureFCM(
       BuildContext context, PolylineProvider provider) async {
     await subscribeToTopic();
 
     _fcm.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        AppDialogs.showDialog(
-          context,
-          isLoading: false,
-          isActivity: true,
-          provider: provider,
-          title: message['notification']['title'] ?? message['data']['title'],
-          message: message['notification']['body'] ?? message['data']['body'],
-        );
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        // Callback fired when app is closed but still in the background.
-        AppDialogs.showDialog(
-          context,
-          isLoading: false,
-          isActivity: true,
-          provider: provider,
-          title: message['notification']['title'] ?? message['data']['title'],
-          message: message['notification']['body'] ?? message['data']['body'],
-        );
-      },
-      onResume: (Map<String, dynamic> message) async {
-        // Callback fired when app is fully terminated.
-        AppDialogs.showDialog(
-          context,
-          isLoading: false,
-          isActivity: true,
-          provider: provider,
-          title: message['notification']['title'] ?? message['data']['title'],
-          message: message['notification']['body'] ?? message['data']['body'],
-        );
-      },
+      onMessage: (Map<String, dynamic> message) async =>
+          _showDialog(context, message, provider),
+      onLaunch: (Map<String, dynamic> message) async =>
+          _showDialog(context, message, provider),
+      onResume: (Map<String, dynamic> message) async =>
+          _showDialog(context, message, provider),
     );
   }
 }
