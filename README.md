@@ -1,4 +1,5 @@
 # Forest Guard
+[![Forest Guard Client](https://img.shields.io/endpoint?color=green&style=flat-square&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dorg.lisa_ghana.forest_guard%26l%3DForest%2520Guard%2520Client%26m%3D%24version)](https://play.google.com/store/apps/details?id=org.lisa_ghana.forest_guard)  
 
 The mobile app client for the [Forest Guard AI Model](https://github.com/LISA-Ghana/forest_guard_ai) built and deployed by Team LISA for the [AI4Good Hackathon](https://superfluid.io/ai-commons/) organized by [AI Commons](https://ai-commons.org/) and hosted by [Superfluid.io](https://superfluid.io/).
 
